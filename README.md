@@ -1,1 +1,1 @@
-# TravelSalesmanProblem
+# TravelingSalesmanProblem
