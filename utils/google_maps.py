@@ -93,4 +93,30 @@ class GoogleMaps(object):
         else:
             return None
 
+    def get_address_recommendation(self, query, language=None, location=None):
+        """
 
+        :param query:
+        :param language:
+        :param location:
+        :return:
+        """
+        return_size = 1  # 5
+        list_return_info = list()
+        list_places_text_search_result = self._text_search(query=query, language=language, location=location)
+
+        if len(list_places_text_search_result) > return_size:
+            list_places_text_search_result = list_places_text_search_result[:return_size]
+
+        for place in list_places_text_search_result:
+            result_geocode = self._return_reverse_geocode_info(place.geo_location['lat'], place.geo_location['lng'],
+                                                               language=language)
+
+            if result_geocode:
+                result_geocode['formatted_address'] = '{} {}'.format(place.name, result_geocode['formatted_address'])
+                result_geocode['place_name'] = place.name
+                result_geocode['lat'] = '{}'.format(place.geo_location['lat'])
+                result_geocode['lng'] = '{}'.format(place.geo_location['lng'])
+                list_return_info.append(result_geocode)
+
+        return list_return_info
