@@ -79,3 +79,18 @@ class GoogleMaps(object):
         else:
             return None
 
+    def get_pincode_city(self, lat, lng, language=None):
+        """
+
+        :param lat:
+        :param lng:
+        :param language:
+        :return:
+        """
+        reverse_geocode_info = self._return_reverse_geocode_info(lat, lng, language=language)
+        if reverse_geocode_info:
+            return {'city': reverse_geocode_info['city'], 'pincode': reverse_geocode_info['pincode']}
+        else:
+            return None
+
+
