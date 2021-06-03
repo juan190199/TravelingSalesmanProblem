@@ -6,7 +6,8 @@ class GoogleMaps(object):
     def __init__(self, password):
         """
 
-        :param password:
+        :param password: string
+            API Key
         """
         self._google_maps_key = password
         self._google_places = GooglePlaces(self._google_maps_key)
@@ -15,21 +16,36 @@ class GoogleMaps(object):
     def _text_search(self, query, language=None, location=None):
         """
 
-        :param query:
-        :param language:
-        :param location:
-        :return:
+        :param query: string
+            Place of interest
+
+        :param language: string
+            Preferred language
+
+        :param location: string
+            Location of place of interest
+
+        :return: list
+            List of Places object
         """
         text_query_result = self._google_places.text_search(query=query, language=language, location=location)
+        # [<Place name, lat, lng>]
         return text_query_result.places
 
     def _reverse_geocode(self, lat, lng, language=None):
         """
 
-        :param lat:
-        :param lng:
-        :param language:
-        :return:
+        :param lat: float
+            Latitude of place of interest
+
+        :param lng: float
+            Longitude of place of interest
+
+        :param language: string
+            Preferred language
+
+        :return: list
+            List of dictionaries with data of places of interest
         """
         list_reverse_geocode = self._google_geocode.reverse_geocode((lat, lng), language=language)
         return list_reverse_geocode
@@ -37,10 +53,17 @@ class GoogleMaps(object):
     def _return_reverse_geocode_info(self, lat, lng, language=None):
         """
 
-        :param lat:
-        :param lng:
-        :param language:
-        :return:
+        :param lat: float
+            Latitude of place of interest
+
+        :param lng: float
+            Longitude of place of interest
+
+        :param language: string
+            Preferred language
+
+        :return: dictionary
+            Dictionary with data of place of interest
         """
         list_reverse_geocode = self._reverse_geocode(lat, lng, language=language)
         if list_reverse_geocode:
@@ -82,10 +105,17 @@ class GoogleMaps(object):
     def get_pincode_city(self, lat, lng, language=None):
         """
 
-        :param lat:
-        :param lng:
-        :param language:
-        :return:
+        :param lat: float
+            Latitude of place of interest
+
+        :param lng: float
+            Longitude of place of interest
+
+        :param language: string
+            Preferred language
+
+        :return: dictionary
+
         """
         reverse_geocode_info = self._return_reverse_geocode_info(lat, lng, language=language)
         if reverse_geocode_info:
@@ -96,10 +126,17 @@ class GoogleMaps(object):
     def get_address_recommendation(self, query, language=None, location=None):
         """
 
-        :param query:
-        :param language:
-        :param location:
-        :return:
+        :param query: string
+            Place of interest
+
+        :param language: string
+            Preferred language
+
+        :param location: string
+            Location of place of interest
+
+        :return: list
+            List of dictionaries with information of places of interest
         """
         return_size = 1  # 5
         list_return_info = list()
