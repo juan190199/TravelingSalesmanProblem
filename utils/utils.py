@@ -97,13 +97,35 @@ def convert_edges_tuples_to_dict(nodes, edge_tuples):
     return edges
 
 
+def create_subgraph(graph, nodes_to_include):
+    """
+
+    :param graph:
+    :param nodes_to_include:
+    :return:
+    """
+    subgraph = nx.Graph(graph.get_graph().subgraph(nodes_to_include))
+    return Graph(subgraph)
+
+
 def create_minimum_weight_perfect_matching(graph):
     """
 
     :param graph:
     :return:
     """
-    ...
+    # Create new graph with negative weight
+    new_graph = Graph()
+    for e in graph.get_edges():
+        new_graph.add_edge(e[0], e[1], -int((graph.get_edge_weight(e[0], e[1]))))
+
+    set_matching = nx.max_weight_matching(new_graph.get_graph(), maxcardinality=True)
+
+    matching_graph = Graph()
+    for m in set_matching:
+        matching_graph.add_edge(m[0], m[1], graph.get_edge_weight(m[0], m[1]))
+
+    return matching_graph
 
 
 def union_graphs(graph1, graph2):
@@ -113,7 +135,8 @@ def union_graphs(graph1, graph2):
     :param graph2:
     :return:
     """
-    ...
+    multi_graph = Graph(multi_graph=True)
+
 
 
 def get_total_cost(graph, path):
