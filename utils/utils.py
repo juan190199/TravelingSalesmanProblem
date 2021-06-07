@@ -3,6 +3,7 @@ import networkx as nx
 
 from graph import Graph
 
+
 def create_graph():
     """
 
@@ -145,7 +146,6 @@ def union_graphs(graph1, graph2):
     return multi_graph
 
 
-
 def get_total_cost(graph, path):
     """
 
@@ -153,4 +153,8 @@ def get_total_cost(graph, path):
     :param path:
     :return:
     """
-    ...
+    weight = 0
+    for i in range(1, len(path)):
+        weight += int(graph.get_edge_weight(path[i - 1], path[i]))
+
+    return weight
