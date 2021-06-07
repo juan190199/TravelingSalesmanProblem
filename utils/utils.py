@@ -83,6 +83,20 @@ def print_edges_with_weight(graph):
             print(f"Edge: ({e[0]}, {e[1]}) = {graph.get_edge_weight(e[0], e[1])}")
 
 
+def convert_edges_tuples_to_dict(nodes, edge_tuples):
+    edges = {}
+
+    # Add all nodes as keys
+    for n in nodes:
+        edges[n] = []
+
+    for e in edge_tuples:
+        edges[e[0]].append((e[1]))
+        edges[e[1]].append((e[0]))
+
+    return edges
+
+
 def create_minimum_weight_perfect_matching(graph):
     """
 
