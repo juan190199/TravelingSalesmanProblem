@@ -136,6 +136,13 @@ def union_graphs(graph1, graph2):
     :return:
     """
     multi_graph = Graph(multi_graph=True)
+    for e in graph1.get_edges():
+        multi_graph.add_edge(e[0], e[1])
+
+    for e in graph2.get_edges():
+        multi_graph.add_edge(e[0], e[1])
+
+    return multi_graph
 
 
 
