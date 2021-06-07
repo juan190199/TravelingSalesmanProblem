@@ -1,15 +1,17 @@
 import copy
 import networkx as nx
 
-from graph import Graph
+from utils.graph import Graph
 
 
-def create_graph():
+def create_graph_from_distance_matrix(distance_matrix):
     """
 
     :return:
     """
-    ...
+    if distance_matrix.shape[0] > 0:
+        g = Graph(distance_matrix=distance_matrix)
+        return g
 
 
 def get_mst(graph):
