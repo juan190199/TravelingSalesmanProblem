@@ -40,32 +40,47 @@ def get_mst(graph):
     return mst_graph
 
 
-
 def get_degrees(graph):
     """
 
     :param graph:
     :return:
     """
-    ...
+    degrees = {}
+
+    for d in graph.get_degree():
+        degrees[d[0]] = d[1]
+
+    return degrees
 
 
-def get_nodes_odd_degrees(degrees)
+def get_nodes_odd_degrees(degrees):
     """
     
     :param degrees: 
     :return: 
     """
-    ...
+    odd_degrees = {}
+
+    for k in degrees.keys():
+        if (degrees[k] % 2 != 0):
+            odd_degrees[k] = degrees[k]
+
+    return odd_degrees
 
 
-def print_edges(graph):
+def print_edges_with_weight(graph):
     """
 
     :param graph:
     :return:
     """
-    ...
+    if isinstance(graph.get_graph(), nx.MultiGraph):
+        for e in graph.get_edges():
+            print(f"Edge: ({e[0]}, {e[1]})")
+    else:
+        for e in graph.get_edges():
+            print(f"Edge: ({e[0]}, {e[1]}) = {graph.get_edge_weight(e[0], e[1])}")
 
 
 def create_minimum_weight_perfect_matching(graph):
