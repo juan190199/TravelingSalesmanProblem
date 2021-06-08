@@ -5,25 +5,20 @@ import matplotlib.pyplot as plt
 
 class Graph:
     def __init__(self, distance_matrix=None, nx_graph=None, multi_graph=False, di_graph=False):
-        if distance_matrix is not None:
-            if multi_graph:
-                self.g = nx.from_numpy_matrix(distance_matrix, create_using=nx.MultiGraph)
-            elif di_graph:
-                self.g = nx.from_numpy_matrix(distance_matrix, create_using=nx.DiGraph)
-            else:
-                self.g = nx.from_numpy_matrix(distance_matrix)
+        if nx_graph:
+            self.g = nx_graph
+        elif multi_graph:
+            self.g = nx.MultiGraph()
+        elif di_graph:
+            self.g = nx.DiGraph()
         else:
-            if nx_graph:
-                self.g = nx_graph
-            elif multi_graph:
-                self.g = nx.MultiGraph()
-            elif di_graph:
-                self.g = nx.DiGraph()
-            else:
-                self.g = nx.Graph()
+            self.g = nx.Graph()
 
     def add_node_list(self, node_list):
         self.g.add_weighted_edges_from(node_list)
+
+    def add_edges_from(self, ebunch_to_add, **attr):
+        self.g.add_edges_from(ebunch_to_add)
 
     def node_count(self):
         return self.g.number_of_nodes()
