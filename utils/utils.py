@@ -4,14 +4,16 @@ import networkx as nx
 from utils.graph import Graph
 
 
-def create_graph_from_distance_matrix(distance_matrix):
-    """
+def create_graph_from_txt_file(txt_file: str):
+    nodes = []
+    with open(txt_file) as file:
+        line = file.readline()
+        while line:
+            if "#" not in line:
+                n_info = line.replace("\n", "").split(",")
+                nodes.append((n_info[0], n_info[1], n_info[2]))
 
-    :return:
-    """
-    if distance_matrix.shape[0] > 0:
-        g = Graph(distance_matrix=distance_matrix)
-        return g
+            line = file.readline()
 
 
 def from_numpy_matrix(A, create_using=None):
