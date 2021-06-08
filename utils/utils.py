@@ -14,6 +14,57 @@ def create_graph_from_distance_matrix(distance_matrix):
         return g
 
 
+def from_numpy_matrix(A, create_using=None):
+    """
+
+    :param A:
+    :param create_using:
+    :return:
+    """
+    kind_to_python_type = {'f': float,
+                           'i': int,
+                           'u': int,
+                           'b': bool,
+                           'c': complex,
+                           'S': str,
+                           'V': 'void'}
+
+    try:
+        import numpy as np
+    except ImportError:
+        raise ImportError("from_numpy_matrix() requires numpy: http://scipy.org/ ")
+
+    g = Graph(create_using)
+    n, m = A.shape
+
+    if n != m:
+        raise nx.NetworkXError("Adjacency matrix is not square.",
+                               "nx,ny=%s" % (A.shape,))
+    dt = A.dtype
+    try:
+        python_type = kind_to_python_type[dt.kind]
+    except:
+        raise TypeError("Unknown numpy data type: %s" % dt)
+
+    nodes = list(range(n))
+    # Get list of edges
+    x, y = np.asarray(A).nonzero()
+
+    # Handle numpy constructed data type
+    if python_type == 'void':
+        fields = sorted([(offset, dtype, name) for name, (dtype, offset) in
+                         A.dtype.fields.items()])
+        for (u, v) in zip(x, y):
+            attr = {}
+            for (offset, dtype, name), val in zip(fields, A[u, v]):
+                attr[name] = kind_to_python_type[dtype.kind](val)
+            g.add_edge(u, v, attr)
+    else:  # Basic data type
+        g.add_edges_from((u, v, {'weight': python_type(A[u, v])}) for (u, v) in zip(x, y))
+
+    return g
+
+
 def get_mst(graph):
     """
     Kruskal's algorithm
