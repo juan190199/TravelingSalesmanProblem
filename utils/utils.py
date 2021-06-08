@@ -15,6 +15,13 @@ def create_graph_from_txt_file(txt_file: str):
 
             line = file.readline()
 
+    if len(nodes) > 0:
+        g = Graph()
+        g.add_node_list(nodes)
+        return g
+
+    raise Exception("Wrong input file provided")
+
 
 def from_numpy_matrix(A, create_using=None):
     """
