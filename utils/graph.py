@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 
 class Graph:
-    def __init__(self, distance_matrix=None, nx_graph=None, multi_graph=False, di_graph=False):
+    def __init__(self, nx_graph=None, multi_graph=False, di_graph=False):
         if nx_graph:
             self.g = nx_graph
         elif multi_graph:
