@@ -108,7 +108,7 @@ def create_subgraph(graph, nodes_to_include):
     :return:
     """
     subgraph = nx.Graph(graph.get_graph().subgraph(nodes_to_include))
-    return Graph(subgraph)
+    return Graph(nx_graph=subgraph)
 
 
 def create_minimum_weight_perfect_matching(graph):
