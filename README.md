@@ -21,3 +21,5 @@ The algorithm is described by following steps:
 6. Hamiltonian Circuit
 
 More details about the algorithm can be found on following [link](https://en.wikipedia.org/wiki/Christofides_algorithm)
+
+![alt text](https://github.com/juan190199/TravelingSalesmanProblem/blob/main/gmaps.png)
