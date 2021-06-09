@@ -8,13 +8,16 @@ If we instead view the input as an undirected complete graph with cost associate
 
 It is NP-complete to decide whether a given undirected graph G = (V, E) has a Hamiltonian cycle. Since the Hamiltonian cycle problem can be reduced to the TSP, the latter is NP-hard. However, approximation algorithms for the TSP can be used to solve the Hamiltonian cycle problem 
 
+Christofides algorithm is an 3/2-approximation algorithm for solving TSP in a metric space. It was first published by Nicos Christofides in 1976.
 
+### Algorithm details
 
-### Metric TSP
+The algorithm is described by following steps:
+1. Minimum Spanning Tree
+2. Odd Degree Vertices
+3. Minimum Weight Perfect Matching
+4. Connected Multigraph
+5. Eulerian Circuit
+6. Hamiltonian Circuit
 
-* Double-Tree algorithm
-* Chritofides' algorithm
-
-### Euclidean TSP
-
-* Arora's algorithme
+More details about the algorithm can be found on following [link](https://en.wikipedia.org/wiki/Christofides_algorithm)
