@@ -4,7 +4,15 @@ import networkx as nx
 from utils.graph import Graph
 
 
-def create_graph_from_txt_file(txt_file: str):
+def create_graph_from_txt_file(txt_file):
+    """
+    Create graph from .txt file
+
+    :param txt_file: String
+        Text file
+
+    :return: Graph
+    """
     nodes = []
     with open(txt_file) as file:
         line = file.readline()
@@ -26,9 +34,13 @@ def create_graph_from_txt_file(txt_file: str):
 def from_numpy_matrix(A, create_using=None):
     """
 
-    :param A:
-    :param create_using:
-    :return:
+    :param A: ndarray
+        Distance matrix
+
+    :param create_using: String
+        Graph type
+
+    :return: Graph
     """
     kind_to_python_type = {'f': float,
                            'i': int,
@@ -77,8 +89,11 @@ def from_numpy_matrix(A, create_using=None):
 def get_mst(graph):
     """
     Kruskal's algorithm
-    :param graph:
+
+    :param graph: Graph
+
     :return:
+        Minimum Spanning Tree
     """
     edges = graph.get_edges()
     weighted_edges = {}
@@ -105,9 +120,12 @@ def get_mst(graph):
 
 def get_degrees(graph):
     """
+    Return degrees for each node
 
-    :param graph:
-    :return:
+    :param graph: Graph
+
+    :return: dict
+        Dictionary with node indices and their respective degree
     """
     degrees = {}
 
@@ -119,9 +137,13 @@ def get_degrees(graph):
 
 def get_nodes_odd_degrees(degrees):
     """
-    
-    :param degrees: 
-    :return: 
+    Return nodes with odd degree
+
+    :param degrees: dict
+        Dictionary with node indices and their degrees
+
+    :return: dict
+        Dictionary with odd degree nodes and their respective degree
     """
     odd_degrees = {}
 
@@ -134,8 +156,10 @@ def get_nodes_odd_degrees(degrees):
 
 def print_edges_with_weight(graph):
     """
+    Print all edges with respective weight
 
-    :param graph:
+    :param graph: Graph
+
     :return:
     """
     if isinstance(graph.get_graph(), nx.MultiGraph):
@@ -147,6 +171,18 @@ def print_edges_with_weight(graph):
 
 
 def convert_edges_tuples_to_dict(nodes, edge_tuples):
+    """
+    Convert edges tuples to dict
+
+    :param nodes: list
+        List of nodes
+
+    :param edge_tuples: list
+        List of tuples (n1, n2, weight)
+
+    :return: dict
+        Dictionary of edges
+    """
     edges = {}
 
     # Add all nodes as keys
@@ -162,10 +198,15 @@ def convert_edges_tuples_to_dict(nodes, edge_tuples):
 
 def create_subgraph(graph, nodes_to_include):
     """
+    Create subgraph with given nodes
 
-    :param graph:
-    :param nodes_to_include:
-    :return:
+    :param graph: Graph
+
+    :param nodes_to_include: list
+        List of nodes to include in subgraph
+
+    :return: Graph
+        Subgraph with given nodes
     """
     subgraph = nx.Graph(graph.get_graph().subgraph(nodes_to_include))
     return Graph(nx_graph=subgraph)
@@ -173,9 +214,12 @@ def create_subgraph(graph, nodes_to_include):
 
 def create_minimum_weight_perfect_matching(graph):
     """
+    Minimum Weight Perfect Matching
 
-    :param graph:
-    :return:
+    :param graph: Graph
+
+    :return: Graph
+        Graph representing Minimum Weight Perfect Matching
     """
     # Create new graph with negative weight
     new_graph = Graph()
@@ -193,10 +237,14 @@ def create_minimum_weight_perfect_matching(graph):
 
 def union_graphs(graph1, graph2):
     """
+    Return graph as a result of union two graphs
 
-    :param graph1:
-    :param graph2:
-    :return:
+    :param graph1: Graph
+
+    :param graph2: Graph
+
+    :return: Graph
+        Union of graph1 and graph2
     """
     multi_graph = Graph(multi_graph=True)
     for e in graph1.get_edges():
@@ -210,10 +258,15 @@ def union_graphs(graph1, graph2):
 
 def get_total_cost(graph, path):
     """
+    Return total cost of a given path
 
-    :param graph:
-    :param path:
-    :return:
+    :param graph: Graph
+
+    :param path: list
+        List of nodes describing order of a path
+
+    :return: float
+        Total cost of a given path
     """
     weight = 0
     for i in range(1, len(path)):
