@@ -22,4 +22,4 @@ The algorithm is described by following steps:
 
 More details about the algorithm can be found on following [link](https://en.wikipedia.org/wiki/Christofides_algorithm)
 
-![alt text](https://github.com/juan190199/TravelingSalesmanProblem/blob/main/gmaps.png)
+![alt text](https://github.com/juan190199/TravelingSalesmanProblem/blob/main/googlemaps.png)
