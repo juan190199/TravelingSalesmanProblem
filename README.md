@@ -1,7 +1,7 @@
 # TravelingSalesmanProblem
 
 ## About
-Python implementation of Christofides algorithm. The purpose of this project is to visualize and understand Christofides algorithm
+Python implementation of Christofides algorithm with Google Maps API. The purpose of this project is to visualize and understand with help of Google Maps API the Christofides algorithm.
 
 ## Table of Contents
 - [About](#about)
