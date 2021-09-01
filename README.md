@@ -1,6 +1,14 @@
 # TravelingSalesmanProblem
 
-### Introduction
+## About
+Python implementation of Christofides algorithm. The purpose of this project is to visualize and understand Christofides algorithm
+
+## Table of Contents
+- [About](#about)
+- [Introduction](#introduction)
+- [Algorithm Details](#algorithm-details)
+
+## Introduction
 
 In the Traveling Salesman Problem (TSP), there is a given set of cities {1, ..., n} and the input consists of a symmetric n by n matrix C that specifies the cost of travelling from city i to city j. By convention, the cost of traveling from any city to itself is equal to 0, and costs are nonnegative.
 
@@ -10,7 +18,7 @@ It is NP-complete to decide whether a given undirected graph G = (V, E) has a Ha
 
 Christofides algorithm is an 3/2-approximation algorithm for solving TSP in a metric space. It was first published by Nicos Christofides in 1976.
 
-### Algorithm details
+## Algorithm Details
 
 The algorithm is described by following steps:
 1. Minimum Spanning Tree
